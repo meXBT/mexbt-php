@@ -10,8 +10,6 @@ $ctx->private_key = "aaaa";
 $ctx->user_id = "aaaa";
 $ctx->sandbox = true;
 
-$now = time();
-
 //
 
 echo "Balance: " . $ctx->balance() . "\n\n";
