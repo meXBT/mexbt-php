@@ -21,8 +21,8 @@ echo "Trades: " . $ctx->trades() . "\n\n";
 echo "Orders: " . $ctx->orders() . "\n\n";
 echo "Info: " . $ctx->info() . "\n\n";
 echo "Deposit addresses: " . $ctx->deposit_addresses() . "\n\n";
-echo "BTC deposit: " . $ctx->deposit_address_btc() . "\n\n";
-echo "LTC deposit: " . $ctx->deposit_address_ltc() . "\n\n";
+echo "BTC deposit: " . $ctx->deposit_address("BTC") . "\n\n";
+echo "LTC deposit: " . $ctx->deposit_address("ltc") . "\n\n";
 
 
 ?>

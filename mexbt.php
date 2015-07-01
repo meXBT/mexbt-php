@@ -317,12 +317,14 @@ class mexbt
 	}
 
 	/**
-	 * Returns your deposit address for BTC.
+	 * Returns your deposit address for this currency (BTC, LTC...).
 	 *
+	 * @param string $currency
 	 * @return string The address.
 	 */
-	public function deposit_address_btc() {
+	public function deposit_address($currency) {
 
+		$currency = strtoupper($currency);
 		$arr = array();
 
 		$res = $this->call("deposit-addresses", $arr);
@@ -331,33 +333,11 @@ class mexbt
 
 		for ($i = 0; $i < count($res); $i++) {
 			$tmp = $res[$i];
-			if ($tmp["name"] === "BTC")
+			if ($tmp["name"] === $currency)
 				return $tmp["depositAddress"];
 		}
 
-		throw new Exception("No BTC deposit address");
-	}
-
-	/**
-	 * Returns your deposit address for LTC.
-	 *
-	 * @return string The address.
-	 */
-	public function deposit_address_ltc() {
-
-		$arr = array();
-
-		$res = $this->call("deposit-addresses", $arr);
-		$res = json_decode($res, true);
-		$res = $res["addresses"];
-
-		for ($i = 0; $i < count($res); $i++) {
-			$tmp = $res[$i];
-			if ($tmp["name"] === "LTC")
-				return $tmp["depositAddress"];
-		}
-
-		throw new Exception("No LTC deposit address");
+		throw new Exception("No $currency deposit address");
 	}
 }
 

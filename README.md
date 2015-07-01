@@ -66,8 +66,7 @@ orders
 withdraw
 info
 deposit_addresses
-deposit_address_btc
-deposit_address_ltc
+deposit_address("BTC")
 ```
 
 ### Sandbox
