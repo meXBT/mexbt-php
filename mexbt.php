@@ -33,6 +33,19 @@ class mexbt
 	public $sandbox = false;
 
 	/**
+	 * Format the float to a string at required precision.
+	 *
+	 * @param float $num
+	 * @return string Formatted number.
+	 */
+	private function format_float($num) {
+		if (!is_null($this->sandbox) && $this->sandbox)
+			return sprintf("%.6f", $num);
+		else
+			return sprintf("%.8f", $num);
+	}
+
+	/**
 	 * Send this JSON and return the response.
 	 *
 	 * @param string $name
@@ -194,7 +207,7 @@ class mexbt
 		$arr = array("ins" => $currency_pair,
 				"side" => $buying ? "buy" : "sell",
 				"orderType" => $ordertype === "market" ? 1 : 0,
-				"qty" => sprintf("%.6f", $qty));
+				"qty" => $this->format_float($qty));
 
 		if ($ordertype !== "market")
 			$arr["px"] = $price;
@@ -271,7 +284,7 @@ class mexbt
 	 */
 	public function withdraw($amount, $address, $currency = "btc") {
 
-		$printed = sprintf("%.6f", $amount);
+		$printed = $this->format_float($amount);
 
 		$arr = array("ins" => $currency, "amount" => $printed,
 				"sendToAddress" => $address);
