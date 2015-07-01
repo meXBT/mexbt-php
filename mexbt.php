@@ -49,7 +49,7 @@ class mexbt
 				is_null($this->currency_pair))
 				throw new Exception("Attempted private call without configuring");
 
-			$nonce = (int) (microtime(true) * 10000.0);
+			$nonce = (int) (microtime(true) * 1000.0);
 
 			$arr["apiKey"] = $this->public_key;
 			$arr["apiNonce"] = $nonce;
